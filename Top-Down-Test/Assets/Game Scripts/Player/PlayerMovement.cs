@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveDirection;
     public Vector2 LastMotionVector;
     bool isFacingRight = true;
+    public Animator anim;
 
     void ProcessInputs()
     {
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         ProcessInputs();
+        Animate();
     }
 
     void FixedUpdate()
@@ -57,5 +59,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
+    }
+
+    void Animate()
+    {
+        anim.SetFloat("AnimMoveX", moveDirection.x);
+        anim.SetFloat("AnimMoveY", moveDirection.y);
+        anim.SetFloat("AnimMoveMagnitude", moveDirection.magnitude);
     }
 }
